@@ -80,11 +80,13 @@ def user_update():
     main.update_user_details(name, field, value)
 def user_delete():
     main.delete_user_record(input("Enter the username : "))
-print("Welcome to our program!")
+print("Welcome to library management system!")
 while True:
     print("1)Employee management")
     print("2)Inventory of books")
-    print("3)Exit")
+    print("3)Purchase information")
+    print("4)User management")
+    print("5)Exit")
     choice = main.force_int("Enter your choice : ")
     if choice == 1:
         print("Entered employee management")

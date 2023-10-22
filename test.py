@@ -29,7 +29,7 @@ def book_add():
     copies = main.force_int("Enter the number of copies : ")
     main.bookdetails(name,author,publisher,purchase_date,purchase_cost,copies)
 def book_display():
-    main.display_book_details(input("Enter book name"))
+    main.display_book_details(input("Enter book name : "))
 def book_update():
     name = input("Enter book name : ")
     print("Possible feilds : book_id, name, author, publisher, date_of_purchase, cost_of_purchase, copies")
@@ -45,7 +45,7 @@ def purchase_add():
     book_name = input("Enter book name : ")
     address = input("Enter your address : ")
     status = input("Enter book stats (Purchased or issued) : ")
-    purchase_date = main.force_int("Enter the purchase date : ")
+    purchase_date = main.force_date("Enter the purchase date (yyyy-mm-dd) : ")
     cost = main.force_int("Enter the cost : ")
     while True:
         date = input("Is there a date of return (Y/n) : ")
@@ -54,7 +54,8 @@ def purchase_add():
             main.purchdetails(name,book_name,contact,address,status,purchase_date,cost,date_of_return)
             break
         else:
-            main.purchdetails(name,book_name,contact,address,status,purchase_date,cost,main.user)
+            main.purchdetails(name,book_name,contact,address,status,purchase_date,cost)
+            break
 def purchase_display():
     main.display_purch_details(input("Enter customer name : "))
 def purchase_update():
@@ -64,7 +65,7 @@ def purchase_update():
     value = input("Enter changed value : ")
     main.update_purch_record(name, field,value)
 def purchase_delete():
-    main.delete_purch_record(input("Enter customer name : "))
+    main.delete_purch_record(input("Enter Purchase ID : "))
 def user_add():
     name = input("Enter employee/represntative name : ")
     user_name = input("Enter a new username : ")

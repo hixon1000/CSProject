@@ -1,6 +1,6 @@
 import FinalCscProject as cs
 main = cs.project()
-
+Logged_in = main.logged_in
 def employee_add():
     name = input("Enter employee name : ")
     age = main.force_int("Enter employee age : ")
@@ -45,18 +45,14 @@ def purchase_add():
     status = input("Enter book stats (Purchased or issued) : ")
     purchase_date = main.force_int("Enter the purchase date : ")
     cost = main.force_int("Enter the cost : ")
-    date_of_return = "Null"
     while True:
-        n = input("Is the customer registered?")
-        if n in "Yy":
-            username = input("Enter customer username : ")
-            main.purchdetails(name,book_name,contact,address,status,purchase_date,cost,date_of_return,username)
-            break
-        elif n in "Nn":
+        date = input("Is there a date of return (Y/n) : ")
+        if date in "Yy":
+            date_of_return = main.force_date("Enter date of return : ")
             main.purchdetails(name,book_name,contact,address,status,purchase_date,cost,date_of_return)
             break
         else:
-            print("Invalid input")
+            main.purchdetails(name,book_name,contact,address,status,purchase_date,cost,main.user)
 def purchase_display():
     main.display_purch_details(input("Enter customer name : "))
 def purchase_update():
@@ -67,7 +63,7 @@ def purchase_update():
 def purchase_delete():
     main.delete_purch_record(input("Enter customer name : "))
 def user_add():
-    name = input("Enter customer name : ")
+    name = input("Enter employee/represntative name : ")
     user_name = input("Enter a new username : ")
     password = input("Enter the password : ")
     main.userdetails(name,user_name,password)
@@ -80,12 +76,13 @@ def user_update():
     main.update_user_details(name, field, value)
 def user_delete():
     main.delete_user_record(input("Enter the username : "))
-print("Welcome to library management system!")
-while True:
+if Logged_in:
+    print("Welcome to library management system!")
+while Logged_in:
     print("1)Employee management")
     print("2)Inventory of books")
     print("3)Purchase information")
-    print("4)User management")
+    print("4)User management (Mostly for admin)")
     print("5)Exit")
     choice = main.force_int("Enter your choice : ")
     if choice == 1:
@@ -138,6 +135,7 @@ while True:
             print("3)Update a record")
             print("4)Remove a record")
             print("5)Enter back to main")
+            choice = main.force_int("Enter your choice : ")
             if choice == 1:
                 purchase_add()
             elif choice == 2:
@@ -158,6 +156,7 @@ while True:
             print("3)Update user information")
             print("4)Remove a user")
             print("5)Exit back to main")
+            choice = main.force_int("Enter your choice : ")
             if choice == 1:
                 user_add()
             elif choice == 2:

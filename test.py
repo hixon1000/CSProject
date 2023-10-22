@@ -13,6 +13,7 @@ def display_employee_record():
     main.display_emp_details(input("Enter employee name : "))
 def update_employee_records():
     name = input("Enter employee name : ")
+    print("Possible feilds : name, age, occupation, date_of_joining, contact_info, salary")
     field = input("Enter the feild to change : ")
     value = input("Enter changed value : ")
     main.update_emp_record(name,field,value)
@@ -31,6 +32,7 @@ def book_display():
     main.display_book_details(input("Enter book name"))
 def book_update():
     name = input("Enter book name : ")
+    print("Possible feilds : book_id, name, author, publisher, date_of_purchase, cost_of_purchase, copies")
     field = input("Enter the feild to change : ")
     value = input("Enter changed value : ")
     main.update_book_record(name, field,value)
@@ -57,6 +59,7 @@ def purchase_display():
     main.display_purch_details(input("Enter customer name : "))
 def purchase_update():
     name = input("Enter customer name : ")
+    print("Possible feilds : sl_no, name, contact_info, address, status, date_of_rent_or_purchase, cost_of_rent_or_purchase, date_of_return, Book_id, User_id")
     field = input("Enter the feild to change : ")
     value = input("Enter changed value : ")
     main.update_purch_record(name, field,value)
@@ -72,6 +75,7 @@ def user_display():
     main.display_user_details(input("Enter the username : "))
 def user_update():
     name = input("Enter user name : ")
+    print("Possible feilds : user_id, user_name, username, password, emp_id")
     field = input("Enter the feild to change : ")
     value = input("Enter changed value : ")
     main.update_user_details(name, field, value)

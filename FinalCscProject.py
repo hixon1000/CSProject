@@ -37,7 +37,7 @@ class project:
         self.mycursor.execute("create table if not exists purchase_rent_details(sl_no int(4) not null primary key, name varchar(30) not null, contact_info char(12), address varchar(40), status varchar(10), date_of_rent_or_purchase date, cost_of_rent_or_purchase int(5), date_of_return date null, Book_id int(4) references book_details(book_id), User_id int references user_details(user_id))")
         self.mycursor.execute("create table if not exists user_details(user_id int not null primary key, user_name varchar(30), username varchar(20) not null unique, password varchar(20) not null, emp_id int(4) references employee_details(emp_id))")
         try:
-            self.mycursor.execute("insert into user_details values(1,'Admin','Admin','Lib@)23');")
+            self.mycursor.execute("insert into user_details values(1,'Admin','Admin','Lib@)23',1);")
             self.myconnect.commit()
         except:
             pass
@@ -282,14 +282,17 @@ class project:
         if self.is_admin:
             passwd=input("Would you like to know passwords as well? (Y/n) : ")
             if passwd in 'Yy':
-                print(tabulate(records,headers = ["ID", "Name", "Username", "Password"]))
+                print(tabulate(records,headers = ["ID", "Name", "Username", "Password","Employee ID"]))
             else:
                 mod_records=[]
                 for i in records:
-                    mod_records.append([i[0],i[1],i[2]])
-                print(tabulate(mod_records,headers = ["ID", "Name", "Username"]))
+                    mod_records.append([i[0],i[1],i[2],i[4]])
+                print(tabulate(mod_records,headers = ["ID", "Name", "Username","Employee ID"]))
         else:
-            print(tabulate(records,headers = ["ID", "Name", "Username", "Password"]))
+            mod_records=[]
+            for i in records:
+                mod_records.append([i[0],i[1],i[2],i[4]])
+            print(tabulate(records,headers = ["ID", "Name", "Username", "Employee ID"]))
     #4.3
     def update_user_details(self,username,field,value):
         if self.is_admin:
@@ -310,7 +313,8 @@ class project:
             for i in range(len(row)):
                 uid=row[i][0]
                 name=row[i][2]
-            print(f"Details\n\nUser ID: {uid}\nName: {name}\nUsername: {username}")
+                emp_id=row[i][4]
+            print(f"Details\n\nUser ID: {uid}\nName: {name}\nUsername: {username}\nEmployee ID: {emp_id}")
             p=input('Do you wish to proceed with the action (y/n): ')
             if p.lower()=='y':
                 self.mycursor.execute("delete from user_details where username='"+username+"'")

@@ -66,7 +66,8 @@ def user_add():
     name = input("Enter employee/represntative name : ")
     user_name = input("Enter a new username : ")
     password = input("Enter the password : ")
-    main.userdetails(name,user_name,password)
+    emp_id = main.force_int("Enter employee id : ")
+    main.userdetails(name,user_name,password,emp_id)
 def user_display():
     main.display_user_details(input("Enter the username : "))
 def user_update():

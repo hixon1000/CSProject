@@ -35,7 +35,7 @@ class project:
         self.mycursor.execute("create table if not exists employee_details(emp_id int(4) not null primary key, name varchar(30) not null, age int(2), occupation varchar(20), date_of_joining date, contact_info char(12), salary int(5))")
         self.mycursor.execute("create table if not exists book_details(book_id int(4) not null primary key, name varchar(30) not null, author varchar(30), publisher varchar(20), date_of_purchase date,cost_of_purchase int(5),copies int(2))")
         self.mycursor.execute("create table if not exists purchase_rent_details(sl_no int(4) not null primary key, name varchar(30) not null, contact_info char(12), address varchar(40), status varchar(10), date_of_rent_or_purchase date, cost_of_rent_or_purchase int(5), date_of_return date null, Book_id int(4) references book_details(book_id), User_id int references user_details(user_id))")
-        self.mycursor.execute("create table if not exists user_details(user_id int not null primary key, user_name varchar(30), username varchar(20) not null unique, password varchar(20) not null, emp_id(4) int references employee_details(emp_id))")
+        self.mycursor.execute("create table if not exists user_details(user_id int not null primary key, user_name varchar(30), username varchar(20) not null unique, password varchar(20) not null, emp_id int(4) references employee_details(emp_id))")
         try:
             self.mycursor.execute("insert into user_details values(1,'Admin','Admin','Lib@)23');")
             self.myconnect.commit()
@@ -270,7 +270,7 @@ class project:
     def userdetails(self,name,user_name,password,emp_id):
         if self.is_admin:
             count=self.userid()
-            self.mycursor.execute("insert into user_details values({0},'{1}','{2}','{3}')".format(count+1,name,user_name,password))
+            self.mycursor.execute("insert into user_details values({0},'{1}','{2}','{3}',{4})".format(count+1,name,user_name,password,emp_id))
             self.myconnect.commit()
             print('Record added')
         else:

@@ -40,7 +40,7 @@ class project:
             self.mycursor.execute("insert into user_details values(1,'Admin','Admin','Lib@)23');")
             self.myconnect.commit()
         except:
-            print("",end="")
+            pass
         self.user = input("Enter your username: ")
         if self.user == "Admin":
             password = input("Enter your password: ")
